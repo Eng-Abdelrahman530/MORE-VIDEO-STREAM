@@ -1,0 +1,29 @@
+style.css
+.feature-card {
+  @apply border p-4 rounded shadow text-center;
+}
+
+.input {
+  @apply w-full border p-2 rounded;
+}
+body {
+  background-color: #f9f9f9;   /* لون الخلفية */
+  color: #333;                /* لون النص */
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #4f46e5;   /* لون شريط العنوان */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+a {
+  color: #4f46e5;               /* لون الروابط */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #9333ea;               /* لون الرابط عند المرور عليه */
+}

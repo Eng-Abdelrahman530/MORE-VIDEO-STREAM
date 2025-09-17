@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title data-i18n="meta.title">More Video Streming</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Small custom styles for overlay & transitions */
+    .overlay {
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(2px);
+    }
+    /* Ensure details summary caret color matches */
+    summary::-webkit-details-marker { display:none; }
+    summary::marker { color: inherit; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <!-- Sidebar toggle -->
+          <button id="btnToggleSidebar" aria-label="Toggle menu"
+                  class="p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M3 6h14M3 10h14M3 14h14" /></svg>
+          </button>
+
+          <!-- Site Title -->
+          <a href="#" data-page="home" class="text-2xl font-bold text-blue-600" data-i18n="site.title">More Video Streming</a>
+        </div>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-6" aria-label="Primary">
+          <a href="#" data-page="features" class="hover:text-blue-600 transition" data-i18n="nav.features">المميزات</a>
+          <a href="#" data-page="demo" class="hover:text-blue-600 transition" data-i18n="nav.demo">الديمو</a>
+          <a href="#" data-page="how" class="hover:text-blue-600 transition" data-i18n="nav.how">كيفية الاستخدام</a>
+          <a href="#" data-page="pricing" class="hover:text-blue-600 transition" data-i18n="nav.pricing">الأسعار</a>
+          <a href="#" data-page="contact" class="hover:text-blue-600 transition" data-i18n="nav.contact">تواصل معنا</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <!-- Language toggle -->
+          <button id="btnLang" class="text-sm border px-3 py-1 rounded hover:bg-gray-100" aria-label="Toggle language">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overlay shown when sidebar open on small screens -->
+  <div id="overlay" class="fixed inset-0 hidden overlay z-30" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto flex gap-6 px-4 sm:px-6 lg:px-8 pt-8 pb-16">
+
+    <!-- Sidebar (off-canvas) -->
+    <aside id="sidebar"
+           class="fixed md:sticky md:top-8 right-0 md:right-auto md:left-auto w-72 max-w-xs h-[calc(100vh-4rem)] md:h-auto bg-white border-l md:border md:rounded-md shadow-lg p-4 transform translate-x-full md:translate-x-0 transition-transform duration-300 z-40"
+           aria-label="Sidebar">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold text-blue-600 text-center w-full" data-i18n="sidebar.title">القائمة الرئيسية</h2>
+        <button id="btnCloseSidebar" class="md:hidden p-1 text-gray-600" aria-label="Close menu">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M6 6l8 8M6 14L14 6" /></svg>
+        </button>
+        
+      </div>
+      <nav class="space-y-2 text-right" aria-label="Sidebar links">
+        <a href="#" data-page="home" class="block py-2 px-3 rounded hover:bg-blue-50" data-i18n="sidebar.home">من نحن</a>
+        <a href="#" data-page="media" class="block py-2 px-3 rounded hover:bg-blue-50" data-i18n="sidebar.media">الصور والفيديو</a>
+        <a href="#" data-page="how" class="block py-2 px-3 rounded hover:bg-blue-50" data-i18n="sidebar.how">كيفية الاستخدام</a>
+        <a href="#" data-page="pricing" class="block py-2 px-3 rounded hover:bg-blue-50" data-i18n="sidebar.pricing">الأسعار</a>
+        <a href="#" data-page="contact" class="block py-2 px-3 rounded hover:bg-blue-50" data-i18n="sidebar.contact">تواصل معنا</a>
+
+        <details class="mt-4 border-t pt-4">
+          <summary class="cursor-pointer py-2 px-3 font-semibold">الشاشات المتوافقة</summary>
+          <div class="mt-2 space-y-3 pr-2">
+            <details class="group" open>
+              <summary class="cursor-pointer font-semibold">سامسونج</summary>
+              <ul class="mt-2 mr-4 space-y-1 text-sm text-gray-700">
+                <li><a href="#samsung-32" class="hover:text-blue-600">مقاس 32</a></li>
+                <li><a href="#samsung-43" class="hover:text-blue-600">مقاس 43</a></li>
+                <li><a href="#samsung-50" class="hover:text-blue-600">مقاس 50</a></li>
+                <li><a href="#samsung-65" class="hover:text-blue-600">مقاس 65</a></li>
+              </ul>
+            </details>
+
+            <details class="group">
+              <summary class="cursor-pointer font-semibold">إل جي</summary>
+              <ul class="mt-2 mr-4 space-y-1 text-sm text-gray-700">
+                <li><a href="#lg-32" class="hover:text-blue-600">مقاس 32</a></li>
+                <li><a href="#lg-43" class="hover:text-blue-600">مقاس 43</a></li>
+                <li><a href="#lg-50" class="hover:text-blue-600">مقاس 50</a></li>
+                <li><a href="#lg-65" class="hover:text-blue-600">مقاس 65</a></li>
+              </ul>
+            </details>
+
+            <details class="group">
+              <summary class="cursor-pointer font-semibold">توشيبا</summary>
+              <ul class="mt-2 mr-4 space-y-1 text-sm text-gray-700">
+                <li><a href="#toshiba-32" class="hover:text-blue-600">مقاس 32</a></li>
+                <li><a href="#toshiba-43" class="hover:text-blue-600">مقاس 43</a></li>
+                <li><a href="#toshiba-50" class="hover:text-blue-600">مقاس 50</a></li>
+                <li><a href="#toshiba-65" class="hover:text-blue-600">مقاس 65</a></li>
+              </ul>
+            </details>
+
+            <details class="group">
+              <summary class="cursor-pointer font-semibold">شارب</summary>
+              <ul class="mt-2 mr-4 space-y-1 text-sm text-gray-700">
+                <li><a href="#sharp-32" class="hover:text-blue-600">مقاس 32</a></li>
+                <li><a href="#sharp-43" class="hover:text-blue-600">مقاس 43</a></li>
+                <li><a href="#sharp-50" class="hover:text-blue-600">مقاس 50</a></li>
+                <li><a href="#sharp-65" class="hover:text-blue-600">مقاس 65</a></li>
+              </ul>
+            </details>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <!-- Main area (pages are separate "views" hidden/shown by JS) -->
+    <main class="flex-1 md:pr-6">
+      <!-- HOME / Hero -->
+      <section id="page-home" class="page">
+        <div class="bg-blue-600 text-white text-center p-10 rounded-lg mb-8">
+          <h1 class="text-4xl font-bold mb-4" data-i18n="hero.title">مور فيديو ستريم – تحكّم كامل في محتوى شاشاتك</h1>
+          <p class="text-lg max-w-3xl mx-auto mb-6" data-i18n="hero.subtitle">
+            منصة قوية لعرض الصور، الفيديوهات، وملفات PDF على الشاشات الذكية (Samsung, LG, Smart TV) من خلال لوحة تحكم سهلة وسريعة.
+          </p>
+          <div class="flex justify-center gap-4">
+            <a href="#" data-page="contact" class="inline-block bg-white text-blue-600 font-bold py-3 px-6 rounded hover:bg-gray-100 transition" data-i18n="hero.cta">احجز Demo مجاني</a>
+            <a href="#" data-page="demo" class="inline-block bg-white/20 border border-white text-white font-semibold py-3 px-6 rounded hover:bg-white/30 transition" data-i18n="hero.watch">شاهد الديمو</a>
+          </div>
+        </div>
+
+        <!-- Short features preview -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-white p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-2" data-i18n="feat.1.title">دعم متعدد الشاشات</h3>
+            <p data-i18n="feat.1.text">يدعم شاشات Samsung، LG (Tizen)، Smart TV من خلال واجهات مخصصة.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-2" data-i18n="feat.2.title">رفع وتشغيل الوسائط</h3>
+            <p data-i18n="feat.2.text">رفع صور، فيديوهات، وملفات PDF بسهولة من لوحة التحكم الخاصة بك.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-2" data-i18n="feat.3.title">جدولة المحتوى</h3>
+            <p data-i18n="feat.3.text">تحكم في وقت عرض كل عنصر بدقة باستخدام الجدولة الذكية.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES page -->
+      <section id="page-features" class="page hidden">
+        <h2 class="text-3xl font-bold text-blue-600 mb-6" data-i18n="features.title">مميزات موور فيديو ستريم</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-3" data-i18n="features.card1.title">دعم متعدد الشاشات</h3>
+            <p data-i18n="features.card1.text">يدعم شاشات Samsung، LG (Tizen)، Smart TV من خلال واجهات مخصصة.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-3" data-i18n="features.card2.title">رفع وتشغيل الوسائط</h3>
+            <p data-i18n="features.card2.text">رفع صور، فيديوهات، وملفات PDF بسهولة من لوحة التحكم الخاصة بك.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-3" data-i18n="features.card3.title">جدولة المحتوى</h3>
+            <p data-i18n="features.card3.text">تحكم في وقت عرض كل عنصر بدقة باستخدام الجدولة الذكية.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-3" data-i18n="features.card4.title">لوحة تحكم ويب احترافية</h3>
+            <p data-i18n="features.card4.text">متكاملة مع Laravel + Tailwind لتجربة سهلة وسريعة.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-3" data-i18n="features.card5.title">تصميم خفيف وسريع</h3>
+            <p data-i18n="features.card5.text">يعمل بكفاءة عالية على جميع أنواع الأجهزة والشاشات.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-3" data-i18n="features.card6.title">متوافق مع مختلف الشاشات</h3>
+            <p data-i18n="features.card6.text">Samsung, LG, Smart TV لضمان أفضل تجربة عرض.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEMO page -->
+      <section id="page-demo" class="page hidden">
+        <h2 class="text-3xl font-bold text-blue-600 mb-6" data-i18n="demo.title">فيديو وصور توضيحية</h2>
+
+        <div class="mb-8">
+          <!-- Replace src with actual demo file -->
+          <video controls class="w-full rounded shadow-lg" src="f:\Projects\more-landing-page\شرح برنامج مور فيديو ستريم .mp4">متصفحك لا يدعم عرض الفيديو.</video>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <img src="f:\Projects\more-landing-page\1.png" alt="الويب سايت " class="rounded shadow" />
+          <img src="f:\Projects\more-landing-page\2.png" alt="تسجيل الدخول " class="rounded shadow" />
+          <img src="f:\Projects\more-landing-page\3.png" alt="لوحه التحكم  " class="rounded shadow" />
+        </div>
+      </section>
+
+      <!-- HOW page -->
+      <section id="page-how" class="page hidden">
+        <h2 class="text-3xl font-bold text-blue-600 mb-6" data-i18n="how.title">كيفية الاستخدام</h2>
+        <ol class="list-decimal list-inside max-w-3xl text-right space-y-4 text-lg">
+          <li data-i18n="how.step1">تسجيل حساب جديد في النظام.</li>
+          <li data-i18n="how.step2">رفع المحتوى (صور، فيديو، PDF) بسهولة.</li>
+          <li data-i18n="how.step3">اختيار الشاشات التي تريد العرض عليها.</li>
+          <li data-i18n="how.step4">تحديد وقت العرض والجدولة بدقة.</li>
+        </ol>
+      </section>
+
+      <!-- PRICING page -->
+      <section id="page-pricing" class="page hidden">
+        <h2 class="text-3xl font-bold text-blue-600 mb-6" data-i18n="pricing.title">الأسعار والاشتراكات</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+          <div class="bg-white p-8 rounded shadow hover:shadow-lg transition">
+            <h3 class="text-2xl font-semibold mb-4" data-i18n="pricing.monthly.title">اشتراك شهري</h3>
+            <p class="mb-6" data-i18n="pricing.monthly.text">احصل على وصول كامل مع تحديثات مستمرة ودعم فني.</p>
+            <p class="text-4xl font-bold mb-6" data-i18n="pricing.monthly.price">500 جنيه / شهر</p>
+            <button class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition" data-i18n="pricing.subscribe">اشترك الآن</button>
+          </div>
+          <div class="bg-white p-8 rounded shadow hover:shadow-lg transition">
+            <h3 class="text-2xl font-semibold mb-4" data-i18n="pricing.yearly.title">اشتراك سنوي</h3>
+            <p class="mb-6" data-i18n="pricing.yearly.text">توفير أكبر بسعر مخفض وميزات إضافية.</p>
+            <p class="text-4xl font-bold mb-6" data-i18n="pricing.yearly.price">5,000 جنيه / سنة</p>
+            <button class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition" data-i18n="pricing.subscribe">اشترك الآن</button>
+          </div>
+        </div>
+        <p class="mt-6 text-gray-600 italic" data-i18n="pricing.note">أو اتصل بنا لطلب تسعير مخصص حسب عدد الشاشات.</p>
+      </section>
+
+      <!-- CONTACT page -->
+      <section id="page-contact" class="page hidden">
+        <h2 class="text-3xl font-bold text-blue-600 mb-6" data-i18n="contact.title">تواصل معنا / احجز Demo</h2>
+
+        <form id="contactForm" class="max-w-xl mx-auto space-y-6 text-right" action="https://formspree.io/f/yourformid" method="POST">
+          <div>
+            <label for="name" class="block mb-2 font-semibold" data-i18n="contact.name.label">الاسم</label>
+            <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded" placeholder="" data-i18n-placeholder="contact.name.placeholder">
+          </div>
+          <div>
+            <label for="email" class="block mb-2 font-semibold" data-i18n="contact.email.label">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded" placeholder="" data-i18n-placeholder="contact.email.placeholder">
+          </div>
+          <div>
+            <label for="phone" class="block mb-2 font-semibold" data-i18n="contact.phone.label">رقم الهاتف</label>
+            <input type="tel" id="phone" name="phone" class="w-full p-3 border border-gray-300 rounded" placeholder="" data-i18n-placeholder="contact.phone.placeholder">
+          </div>
+          <div>
+            <label for="message" class="block mb-2 font-semibold" data-i18n="contact.message.label">الرسالة</label>
+            <textarea id="message" name="message" rows="5" required class="w-full p-3 border border-gray-300 rounded" placeholder="" data-i18n-placeholder="contact.message.placeholder"></textarea>
+          </div>
+          <button type="submit" class="bg-blue-600 text-white py-3 px-8 rounded hover:bg-blue-700 transition font-semibold" data-i18n="contact.send">إرسال</button>
+        </form>
+
+        <p class="mt-8 text-gray-700 text-center">
+          <span data-i18n="contact.or">أو تواصل معنا مباشرة عبر الواتساب:</span>
+          <a id="whatsappLink" href="https://wa.me/01020085488" target="_blank" class="text-blue-600 hover:underline" data-i18n="contact.whatsapp">اضغط هنا</a>
+        </p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-700">
+      <span data-i18n="footer.copyright">© 2025 More Video Streming. جميع الحقوق محفوظة.</span>
+    </div>
+  </footer>
+
+  <!-- JavaScript: controls sidebar, language switch, page routing, i18n -->
+  <script>
+    /*******************************************************
+     * Simple client-side "page" routing (show/hide sections)
+     * Sidebar toggle (off-canvas)
+     * Internationalization (ar/en) toggling strings & direction
+     *******************************************************/
+
+    // Elements
+    const sidebar = document.getElementById('sidebar');
+    const btnToggleSidebar = document.getElementById('btnToggleSidebar');
+    const btnCloseSidebar = document.getElementById('btnCloseSidebar');
+    const overlay = document.getElementById('overlay');
+    const btnLang = document.getElementById('btnLang');
+    const pages = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('[data-page]');
+    const i18nEls = document.querySelectorAll('[data-i18n]');
+    const i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
+    const metaTitle = document.querySelector('title');
+
+    // Translations object
+    const translations = {
+      ar: {
+        'meta.title': 'More Video Streming',
+        'site.title': 'More Video Streming',
+        'nav.features': 'المميزات',
+        'nav.demo': 'الديمو',
+        'nav.how': 'كيفية الاستخدام',
+        'nav.pricing': 'الأسعار',
+        'nav.contact': 'تواصل معنا',
+        'sidebar.title': 'القائمة الرئيسية',
+        'sidebar.home': 'من نحن',
+        'sidebar.media': 'الصور والفيديو',
+        'sidebar.how': 'كيفية الاستخدام',
+        'sidebar.pricing': 'الأسعار',
+        'sidebar.contact': 'تواصل معنا',
+        'hero.title': 'مور فيديو ستريم – تحكّم كامل في محتوى شاشاتك',
+        'hero.subtitle': 'منصة قوية لعرض الصور، الفيديوهات، وملفات PDF على الشاشات الذكية (Samsung, LG, Smart TV) من خلال لوحة تحكم سهلة وسريعة.',
+        'hero.cta': 'احجز Demo مجاني',
+        'hero.watch': 'شاهد الديمو',
+        'feat.1.title': 'دعم متعدد الشاشات',
+        'feat.1.text': 'يدعم شاشات Samsung، LG (Tizen)، Smart TV من خلال واجهات مخصصة.',
+        'feat.2.title': 'رفع وتشغيل الوسائط',
+        'feat.2.text': 'رفع صور، فيديوهات، وملفات PDF بسهولة من لوحة التحكم الخاصة بك.',
+        'feat.3.title': 'جدولة المحتوى',
+        'feat.3.text': 'تحكم في وقت عرض كل عنصر بدقة باستخدام الجدولة الذكية.',
+        'features.title': 'مميزات موور فيديو ستريم',
+        'features.card1.title': 'دعم متعدد الشاشات',
+        'features.card1.text': 'يدعم شاشات Samsung، LG (Tizen)، Smart TV من خلال واجهات مخصصة.',
+        'features.card2.title': 'رفع وتشغيل الوسائط',
+        'features.card2.text': 'رفع صور، فيديوهات، وملفات PDF بسهولة من لوحة التحكم الخاصة بك.',
+        'features.card3.title': 'جدولة المحتوى',
+        'features.card3.text': 'تحكم في وقت عرض كل عنصر بدقة باستخدام الجدولة الذكية.',
+        'features.card4.title': 'لوحة تحكم ويب احترافية',
+        'features.card4.text': 'متكاملة مع Laravel + Tailwind لتجربة سهلة وسريعة.',
+        'features.card5.title': 'تصميم خفيف وسريع',
+        'features.card5.text': 'يعمل بكفاءة عالية على جميع أنواع الأجهزة والشاشات.',
+        'features.card6.title': 'متوافق مع مختلف الشاشات',
+        'features.card6.text': 'Samsung, LG, Smart TV لضمان أفضل تجربة عرض.',
+        'demo.title': 'فيديو وصور توضيحية',
+        'how.title': 'كيفية الاستخدام',
+        'how.step1': 'تسجيل حساب جديد في النظام.',
+        'how.step2': 'رفع المحتوى (صور، فيديو، PDF) بسهولة.',
+        'how.step3': 'اختيار الشاشات التي تريد العرض عليها.',
+        'how.step4': 'تحديد وقت العرض والجدولة بدقة.',
+        'pricing.title': 'الأسعار والاشتراكات',
+        'pricing.monthly.title': 'اشتراك شهري',
+        'pricing.monthly.text': 'احصل على وصول كامل مع تحديثات مستمرة ودعم فني.',
+        'pricing.monthly.price': '500 جنيه / شهر',
+        'pricing.yearly.title': 'اشتراك سنوي',
+        'pricing.yearly.text': 'توفير أكبر بسعر مخفض وميزات إضافية.',
+        'pricing.yearly.price': '5,000 جنيه / سنة',
+        'pricing.subscribe': 'اشترك الآن',
+        'pricing.note': 'أو اتصل بنا لطلب تسعير مخصص حسب عدد الشاشات.',
+        'contact.title': 'تواصل معنا / احجز Demo',
+        'contact.name.label': 'الاسم',
+        'contact.name.placeholder': 'اكتب اسمك الكامل',
+        'contact.email.label': 'البريد الإلكتروني',
+        'contact.email.placeholder': 'example@domain.com',
+        'contact.phone.label': 'رقم الهاتف',
+        'contact.phone.placeholder': '+20 10xxxxxxxx',
+        'contact.message.label': 'الرسالة',
+        'contact.message.placeholder': 'اكتب رسالتك هنا...',
+        'contact.send': 'إرسال',
+        'contact.or': 'أو تواصل معنا مباشرة عبر الواتساب:',
+        'contact.whatsapp': 'اضغط هنا',
+        'footer.copyright': '© 2025 More Video Streming. جميع الحقوق محفوظة.'
+      },
+      en: {
+        'meta.title': 'More Video Streaming',
+        'site.title': 'More Video Streaming',
+        'nav.features': 'Features',
+        'nav.demo': 'Demo',
+        'nav.how': 'How to Use',
+        'nav.pricing': 'Pricing',
+        'nav.contact': 'Contact',
+        'sidebar.title': 'Main Menu',
+        'sidebar.home': 'About Us',
+        'sidebar.media': 'Media',
+        'sidebar.how': 'How to Use',
+        'sidebar.pricing': 'Pricing',
+        'sidebar.contact': 'Contact',
+        'hero.title': 'More Video Streaming – Full Control of Your Screens',
+        'hero.subtitle': 'A powerful platform to display images, videos, and PDFs on smart screens (Samsung, LG, Smart TV) through an easy control panel.',
+        'hero.cta': 'Book Free Demo',
+        'hero.watch': 'Watch Demo',
+        'feat.1.title': 'Multi-screen support',
+        'feat.1.text': 'Supports Samsung, LG (Tizen), and Smart TVs via dedicated interfaces.',
+        'feat.2.title': 'Upload & play media',
+        'feat.2.text': 'Upload images, videos and PDFs easily from your dashboard.',
+        'feat.3.title': 'Content scheduling',
+        'feat.3.text': 'Control when each item appears using smart scheduling.',
+        'features.title': 'More Video Streaming — Features',
+        'features.card1.title': 'Multi-screen support',
+        'features.card1.text': 'Supports Samsung, LG (Tizen), and Smart TVs via dedicated interfaces.',
+        'features.card2.title': 'Upload & play media',
+        'features.card2.text': 'Upload images, videos and PDFs easily from your dashboard.',
+        'features.card3.title': 'Content scheduling',
+        'features.card3.text': 'Control when each item appears using smart scheduling.',
+        'features.card4.title': 'Professional web dashboard',
+        'features.card4.text': 'Integrated with Laravel + Tailwind for a fast, easy experience.',
+        'features.card5.title': 'Light & fast design',
+        'features.card5.text': 'Performs well across devices and screen types.',
+        'features.card6.title': 'Compatible with many TVs',
+        'features.card6.text': 'Samsung, LG, Smart TV to ensure the best display experience.',
+        'demo.title': 'Demo videos & screenshots',
+        'how.title': 'How to Use',
+        'how.step1': 'Create a new account in the system.',
+        'how.step2': 'Upload content (images, video, PDF) easily.',
+        'how.step3': 'Select the screens you want to display on.',
+        'how.step4': 'Set display times and scheduling precisely.',
+        'pricing.title': 'Pricing & Plans',
+        'pricing.monthly.title': 'Monthly Plan',
+        'pricing.monthly.text': 'Get full access with continuous updates and support.',
+        'pricing.monthly.price': 'EGP 500 / month',
+        'pricing.yearly.title': 'Annual Plan',
+        'pricing.yearly.text': 'Better savings at a discounted price with extra features.',
+        'pricing.yearly.price': 'EGP 5,000 / year',
+        'pricing.subscribe': 'Subscribe Now',
+        'pricing.note': 'Or contact us for custom pricing per number of screens.',
+        'contact.title': 'Contact / Book a Demo',
+        'contact.name.label': 'Name',
+        'contact.name.placeholder': 'Your full name',
+        'contact.email.label': 'Email',
+        'contact.email.placeholder': 'example@domain.com',
+        'contact.phone.label': 'Phone',
+        'contact.phone.placeholder': '+20 10xxxxxxxx',
+        'contact.message.label': 'Message',
+        'contact.message.placeholder': 'Write your message here...',
+        'contact.send': 'Send',
+        'contact.or': 'Or contact us directly on WhatsApp:',
+        'contact.whatsapp': 'Click here',
+        'footer.copyright': '© 2025 More Video Streaming. All rights reserved.'
+      }
+    };
+
+    // Default language
+    let lang = 'ar';
+
+    // Utility: update text for all data-i18n elements
+    function applyI18n() {
+      i18nEls.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (key && translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      i18nPlaceholders.forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (key && translations[lang] && translations[lang][key]) {
+          el.setAttribute('placeholder', translations[lang][key]);
+        }
+      });
+      // update page title
+      if (translations[lang] && translations[lang]['meta.title']) {
+        metaTitle.textContent = translations[lang]['meta.title'];
+      }
+      // update lang button label
+      btnLang.textContent = lang === 'ar' ? 'EN' : 'AR';
+
+      // adjust direction & alignment
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      // align text inside pages to direction
+      document.querySelectorAll('main, header, footer, aside').forEach(el => {
+        if (lang === 'ar') {
+          el.classList.remove('text-left');
+          el.classList.add('text-right');
+        } else {
+          el.classList.remove('text-right');
+          el.classList.add('text-left');
+        }
+      });
+
+      // move sidebar side (right for ar, left for en)
+      if (lang === 'ar') {
+        sidebar.classList.remove('left-0');
+        sidebar.classList.add('right-0');
+        sidebar.classList.remove('-translate-x-full'); // not used but safe
+      } else {
+        sidebar.classList.remove('right-0');
+        sidebar.classList.add('left-0');
+      }
+    }
+
+    // Show single page (hide others)
+    function showPage(pageId) {
+      pages.forEach(p => p.classList.add('hidden'));
+      const selector = document.getElementById('page-' + pageId);
+      if (selector) {
+        selector.classList.remove('hidden');
+        // update hash for deep linking
+        history.replaceState(null, '', '#' + pageId);
+        // focus on main heading for accessibility
+        const heading = selector.querySelector('h1, h2');
+        if (heading) heading.focus?.();
+      } else {
+        // fallback to home if page not found
+        document.getElementById('page-home').classList.remove('hidden');
+      }
+      // close sidebar on small screens when navigating
+      closeSidebar();
+    }
+
+    // Sidebar control
+    function openSidebar() {
+      sidebar.classList.remove('translate-x-full');
+      overlay.classList.remove('hidden');
+      overlay.classList.add('block');
+    }
+    function closeSidebar() {
+      // on desktop (md+), sidebar visible by default; we keep translate-x-full logic for small screens
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        sidebar.classList.add('translate-x-full');
+        overlay.classList.remove('block');
+        overlay.classList.add('hidden');
+      }
+    }
+
+    // Set up event listeners
+    btnToggleSidebar.addEventListener('click', () => {
+      if (sidebar.classList.contains('translate-x-full')) {
+        openSidebar();
+      } else {
+        closeSidebar();
+      }
+    });
+    if (btnCloseSidebar) btnCloseSidebar.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // Nav links (header & sidebar)
+    navLinks.forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = a.getAttribute('data-page');
+        // Map 'home' to 'home', but note: header "من نحن" was mapped to page-home earlier
+        // We'll treat data-page values as: home, features, demo, how, pricing, contact, media
+        if (page === 'home') {
+          showPage('home');
+        } else {
+          showPage(page);
+        }
+      });
+    });
+
+    // Language toggle
+    btnLang.addEventListener('click', () => {
+      lang = lang === 'ar' ? 'en' : 'ar';
+      applyI18n();
+    });
+
+    // On load: apply translations & show correct page from hash
+    window.addEventListener('load', () => {
+      // ensure initial sidebar state: on small screens hidden
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        sidebar.classList.add('translate-x-full');
+      } else {
+        sidebar.classList.remove('translate-x-full');
+      }
+      applyI18n();
+
+      // If there is a hash, try to show that page
+      const hash = location.hash.replace('#', '');
+      if (hash) {
+        // check existence of page
+        if (document.getElementById('page-' + hash)) {
+          showPage(hash);
+        } else {
+          showPage('home');
+        }
+      } else {
+        showPage('home');
+      }
+    });
+
+    // Close sidebar on window resize for mobile -> desktop transitions
+    window.addEventListener('resize', () => {
+      if (window.matchMedia('(min-width: 768px)').matches) {
+        overlay.classList.remove('block');
+        overlay.classList.add('hidden');
+        sidebar.classList.remove('translate-x-full');
+      } else {
+        sidebar.classList.add('translate-x-full');
+      }
+    });
+
+  </script>
+</body>
+</html>
