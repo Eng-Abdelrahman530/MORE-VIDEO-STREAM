@@ -11,21 +11,27 @@
   <!-- ستايلاتي الخاصة -->
   <style>
   
-    body {
-      font-family: "Cairo", sans-serif !important;
-      background: linear-gradient(to bottom, #1e293b, #0f172a) !important;
-      color: #fff !important;
-    }
+   body {
+  font-family: "Cairo", sans-serif !important;
+  background: linear-gradient(to bottom, #fcfdfd, #f8f8fa) !important;
+  color: #1f2937 !important; /* غامق بدل الأبيض */
+}
 
-    header {
-      background: rgba(255, 255, 255, 0.05) !important;
-      backdrop-filter: blur(10px) !important;
-      border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-    }
+
+/* ===== Header Links ===== */
+header nav a {
+  color: #1d4ed8 !important; /* أزرق  */
+  font-weight: 600;
+  transition: color 0.3s ease-in-out;
+}
+
+header nav a:hover {
+  color: #1d4ed8 !important; /* أزرق سماوي أغمق عند الهوفر */
+}
 
     button {
       background: linear-gradient(135deg, #4f46e5, #9333ea) !important;
-      color: #fff !important;
+      color: #ffffff !important;
       border-radius: 0.75rem !important;
       padding: 0.5rem 1rem !important;
       transition: 0.3s !important;
@@ -93,7 +99,7 @@
 /* ===== Buttons ===== */
 button {
   background: #1d4ed8;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 0.6rem 1.2rem;
   border-radius: 9999px;
   font-weight: 600;
@@ -259,7 +265,7 @@ button:hover {
 
         <div class="mb-8">
   <!-- تشغيل الفيديو -->
-  <video controls class="w-full rounded shadow-lg" src="assets/videos/more-demo.mp4.mp4"></video>
+  <video controls class="w-full rounded shadow-lg" src="assets/videos/more-demo.mp4"></video>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -696,4 +702,3 @@ const translations = {
   </script>
 </body>
 </html>
-
